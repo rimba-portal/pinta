@@ -15,8 +15,19 @@ class WorkflowCatalog extends Page
 
     public array $workflows = [];
 
-    public function mount(WorkflowCatalogService $catalog): void
-    {
-        $this->workflows = $catalog->initiableBy(auth()->user())->map(fn ($d): array => ['slug' => $d->slug, 'title' => $d->title, 'description' => $d->raw['description'] ?? null])->all();
+    public function mount(
+        WorkflowCatalogService $catalog
+    ): void {
+        $this->workflows = $catalog
+            ->initiableBy(auth()->user())
+            ->map(fn ($d): array => [
+                'slug' => $d->slug,
+                'title' => $d->title,
+                'description' => $d->raw['description'] ?? null,
+                'url' => LaunchWorkflow::getUrl([
+                    'slug' => $d->slug,
+                ]),
+            ])
+            ->all();
     }
 }

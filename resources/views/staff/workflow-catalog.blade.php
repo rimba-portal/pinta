@@ -7,8 +7,7 @@
                 </x-slot>
                 {{ $workflow['description'] }}
                 <x-slot name="footer">
-                    <x-filament::button tag="a" :href="url('/workflows/start/'.$workflow['slug'])"
-                        >Start</x-filament::button>
+                    <x-filament::button tag="a" :href="$workflow['url']"> Start </x-filament::button>
                 </x-slot></x-filament::section>
         @endforeach</div
 ></x-filament-panels::page>
