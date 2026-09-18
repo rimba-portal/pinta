@@ -1,1 +1,0 @@
-<x-filament-panels::page><div class="space-y-4">@foreach($workflows as $workflow)<x-filament::section><x-slot name="heading">{{ $workflow['title'] }}</x-slot><code>{{ $workflow['slug'] }}</code></x-filament::section>@endforeach</div></x-filament-panels::page>

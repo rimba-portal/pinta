@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Rimba\Workflow\Definitions;
 
 final readonly class WorkflowDefinition
@@ -36,6 +38,13 @@ final readonly class WorkflowDefinition
         );
     }
 
-    public function permission(string $ability): string { return $ability.'.'.$this->slug; }
-    public function availableTransitions(string $state): array { return array_values(array_filter($this->transitions, fn(array $t) => $t['from'] === $state)); }
+    public function permission(string $ability): string
+    {
+        return $ability.'.'.$this->slug;
+    }
+
+    public function availableTransitions(string $state): array
+    {
+        return array_values(array_filter($this->transitions, fn (array $t): bool => $t['from'] === $state));
+    }
 }

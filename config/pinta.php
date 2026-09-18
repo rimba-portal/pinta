@@ -1,7 +1,13 @@
 <?php
+
 declare(strict_types=1);
 
-use Rimba\Workflow\Models\{ActivityAssignment,ActivityInstance,Transition,WorkflowInstance,WorkflowLink,WorkflowOutput};
+use Rimba\Workflow\Models\ActivityAssignment;
+use Rimba\Workflow\Models\ActivityInstance;
+use Rimba\Workflow\Models\Transition;
+use Rimba\Workflow\Models\WorkflowInstance;
+use Rimba\Workflow\Models\WorkflowLink;
+use Rimba\Workflow\Models\WorkflowOutput;
 use Rimba\Workflow\Support\NullPermissionSynchronizer;
 
 return [

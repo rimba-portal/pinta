@@ -655,6 +655,14 @@ staff.hired
 staff.terminated
 ```
 
+# Permission convention
+- `init.{workflow-slug}`: start a workflow
+- `work.{workflow-slug}`: execute assigned work
+- `view.{workflow-slug}`: inspect an instance
+- `own.{workflow-slug}`: administer the definition in Team Panel
+
+`PermissionSynchronizer` is intentionally an integration contract. Bind it to the concrete `rimba/boleh` permission API in the host application. The included null implementation keeps Pinta installable without guessing Boleh internals.
+
 ---
 
 # Future Roadmap

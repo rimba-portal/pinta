@@ -11,7 +11,11 @@
     ],
     "require": {
         "php": "^8.3",
-        "rimba/asas": "^1.3"
+        "rimba/asas": "^1.3",
+        "rimba/jejak": "^1.3",
+        "rimba/orang": "^1.3",
+        "rimba/pihak": "^1.3",
+        "spatie/laravel-permission": "^7.3"
     },
     "extra": {
         "laravel": {
