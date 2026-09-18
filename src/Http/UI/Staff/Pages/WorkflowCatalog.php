@@ -11,7 +11,7 @@ class WorkflowCatalog extends Page
 {
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-squares-2x2';
 
-    protected string $view = 'pinta::staff.workflow-catalog';
+    protected string $view = 'bites::staff.workflow-catalog';
 
     public array $workflows = [];
 

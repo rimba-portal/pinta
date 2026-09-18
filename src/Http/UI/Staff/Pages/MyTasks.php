@@ -11,7 +11,7 @@ class MyTasks extends Page
 {
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-queue-list';
 
-    protected string $view = 'pinta::staff.my-tasks';
+    protected string $view = 'bites::staff.my-tasks';
 
     public array $tasks = [];
 

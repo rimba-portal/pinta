@@ -11,7 +11,7 @@ class OwnedWorkflows extends Page
 {
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-adjustments-horizontal';
 
-    protected string $view = 'pinta::team.owned-workflows';
+    protected string $view = 'bites::team.owned-workflows';
 
     public array $workflows = [];
 

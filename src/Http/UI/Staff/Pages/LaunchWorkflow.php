@@ -15,7 +15,7 @@ class LaunchWorkflow extends Page implements HasForms
 {
     use InteractsWithForms;
 
-    protected string $view = 'pinta::staff.launch-workflow';
+    protected string $view = 'bites::staff.launch-workflow';
 
     protected static ?string $slug = null;
 
