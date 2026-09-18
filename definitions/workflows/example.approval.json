@@ -1,0 +1,60 @@
+{
+  "type": "workflow",
+  "template": "approval_workflow",
+  "code": "WF-EXAMPLE-001",
+  "slug": "example.approval",
+  "title": "Example Approval",
+  "version": 1,
+  "initial_state": "draft",
+  "states": {
+    "draft": {},
+    "review": {},
+    "rework": {},
+    "execution": {},
+    "completed": {},
+    "rejected": {},
+    "cancelled": {}
+  },
+  "transitions": [
+    {
+      "from": "draft",
+      "action": "submit",
+      "to": "review"
+    },
+    {
+      "from": "review",
+      "action": "approve",
+      "to": "execution"
+    },
+    {
+      "from": "review",
+      "action": "reject",
+      "to": "rejected"
+    },
+    {
+      "from": "review",
+      "action": "return",
+      "to": "rework"
+    },
+    {
+      "from": "rework",
+      "action": "submit",
+      "to": "review"
+    },
+    {
+      "from": "execution",
+      "action": "assign",
+      "to": "execution"
+    },
+    {
+      "from": "execution",
+      "action": "complete",
+      "to": "completed"
+    },
+    {
+      "from": "draft",
+      "action": "cancel",
+      "to": "cancelled"
+    }
+  ]
+}
