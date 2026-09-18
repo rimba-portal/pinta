@@ -1,0 +1,4 @@
+<?php
+declare(strict_types=1); namespace Rimba\Workflow\Http\UI\Staff\Pages;
+use Filament\Forms\Concerns\InteractsWithForms; use Filament\Forms\Contracts\HasForms; use Filament\Pages\Page; use Rimba\Workflow\Services\{DefinitionRegistry,LaunchFormSchemaService,WorkflowAuthorizationService};
+class LaunchWorkflow extends Page implements HasForms {use InteractsWithForms;protected string $view='pinta::staff.launch-workflow';public string $slug;public ?array $data=[];public function mount(string $slug,DefinitionRegistry $r,WorkflowAuthorizationService $a):void{$d=$r->workflow($slug);abort_unless($a->initiate(auth()->user(),$d),403);$this->slug=$slug;$this->form->fill();}protected function getFormSchema():array{$d=app(DefinitionRegistry::class)->workflow($this->slug);return app(LaunchFormSchemaService::class)->build($d->startForm);}public function submit():void{/* Host form must resolve/create the domain subject, then call WorkflowEngine::start(). */}}
