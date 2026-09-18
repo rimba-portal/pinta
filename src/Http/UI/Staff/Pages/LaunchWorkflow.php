@@ -17,7 +17,7 @@ class LaunchWorkflow extends Page implements HasForms
 
     protected string $view = 'pinta::staff.launch-workflow';
 
-    public string $slug;
+    protected static ?string $slug = null;
 
     public ?array $data = [];
 
