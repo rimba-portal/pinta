@@ -1,0 +1,17 @@
+{
+  "template": "maintenance_workflow",
+  "states": [
+    "request",
+    "planning",
+    "assignment",
+    "execution",
+    "verification",
+    "completion"
+  ],
+  "actions": [
+    "submit",
+    "assign",
+    "complete",
+    "approve"
+  ]
+}

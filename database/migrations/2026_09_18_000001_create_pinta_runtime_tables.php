@@ -4,10 +4,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function up(): void
     {
-        Schema::create(config('pinta.tables.workflow_instances'), function (Blueprint $t) {
+        Schema::create(config('pinta.tables.workflow_instances'), function (Blueprint $t): void {
             $t->id();
             $t->string('definition_slug');
             $t->unsignedInteger('definition_version')->default(1);
@@ -20,7 +21,7 @@ return new class extends Migration {
             $t->timestamp('completed_at')->nullable();
             $t->timestamps();
         });
-        Schema::create(config('pinta.tables.activity_instances'), function (Blueprint $t) {
+        Schema::create(config('pinta.tables.activity_instances'), function (Blueprint $t): void {
             $t->id();
             $t->foreignId('workflow_instance_id')->constrained(config('pinta.tables.workflow_instances'))->cascadeOnDelete();
             $t->string('definition_slug');
@@ -31,7 +32,7 @@ return new class extends Migration {
             $t->timestamp('completed_at')->nullable();
             $t->timestamps();
         });
-        Schema::create(config('pinta.tables.transitions'), function (Blueprint $t) {
+        Schema::create(config('pinta.tables.transitions'), function (Blueprint $t): void {
             $t->id();
             $t->foreignId('workflow_instance_id')->constrained(config('pinta.tables.workflow_instances'))->cascadeOnDelete();
             $t->string('from_state');
@@ -42,6 +43,7 @@ return new class extends Migration {
             $t->timestamp('performed_at');
         });
     }
+
     public function down(): void
     {
         Schema::dropIfExists(config('pinta.tables.transitions'));

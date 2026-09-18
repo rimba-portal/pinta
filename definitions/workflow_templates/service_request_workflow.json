@@ -1,0 +1,17 @@
+{
+  "template": "service_request_workflow",
+  "states": [
+    "request",
+    "approval",
+    "assignment",
+    "execution",
+    "completion"
+  ],
+  "actions": [
+    "submit",
+    "approve",
+    "assign",
+    "complete",
+    "reject"
+  ]
+}

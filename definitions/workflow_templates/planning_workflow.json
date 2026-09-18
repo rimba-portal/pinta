@@ -1,0 +1,14 @@
+{
+  "template": "planning_workflow",
+  "states": [
+    "draft",
+    "review",
+    "approval",
+    "published"
+  ],
+  "actions": [
+    "submit",
+    "approve",
+    "reject"
+  ]
+}

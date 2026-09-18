@@ -1,0 +1,4 @@
+{
+  "event": "manpower_request.approved",
+  "start_workflow": "hr.workforce.recruitment"
+}

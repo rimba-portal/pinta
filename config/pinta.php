@@ -1,4 +1,10 @@
 <?php
+
+declare(strict_types=1);
+use Rimba\Workflow\Models\ActivityInstance;
+use Rimba\Workflow\Models\Transition;
+use Rimba\Workflow\Models\WorkflowInstance;
+
 return [
     'definitions_path' => base_path('definitions'),
     'tables' => [
@@ -7,8 +13,8 @@ return [
         'transitions' => 'work_transitions',
     ],
     'models' => [
-        'workflow_instance' => Rimba\Workflow\Models\WorkflowInstance::class,
-        'activity_instance' => Rimba\Workflow\Models\ActivityInstance::class,
-        'transition' => Rimba\Workflow\Models\Transition::class,
+        'workflow_instance' => WorkflowInstance::class,
+        'activity_instance' => ActivityInstance::class,
+        'transition' => Transition::class,
     ],
 ];

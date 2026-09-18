@@ -1,0 +1,5 @@
+{
+  "slug": "sc.warehouse.receiving",
+  "title": "Receiving",
+  "template": "service_request_workflow"
+}

@@ -1,0 +1,15 @@
+{
+  "template": "project_workflow",
+  "states": [
+    "initiation",
+    "planning",
+    "execution",
+    "monitoring",
+    "closure"
+  ],
+  "actions": [
+    "submit",
+    "approve",
+    "complete"
+  ]
+}

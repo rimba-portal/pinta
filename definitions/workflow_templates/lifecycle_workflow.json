@@ -1,0 +1,16 @@
+{
+  "template": "lifecycle_workflow",
+  "states": [
+    "create",
+    "active",
+    "suspend",
+    "retire",
+    "archive"
+  ],
+  "actions": [
+    "submit",
+    "approve",
+    "complete",
+    "cancel"
+  ]
+}

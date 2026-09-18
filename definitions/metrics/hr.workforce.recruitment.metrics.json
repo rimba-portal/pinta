@@ -1,0 +1,9 @@
+{
+  "metrics": [
+    "time_to_source",
+    "time_to_shortlist",
+    "applications_received",
+    "candidates_interviewed",
+    "shortlisted_candidates"
+  ]
+}

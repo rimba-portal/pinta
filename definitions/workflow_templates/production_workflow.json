@@ -1,0 +1,16 @@
+{
+  "template": "production_workflow",
+  "states": [
+    "release",
+    "dispatch",
+    "execution",
+    "inspection",
+    "completion"
+  ],
+  "actions": [
+    "submit",
+    "assign",
+    "complete",
+    "approve"
+  ]
+}

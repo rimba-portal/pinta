@@ -1,0 +1,30 @@
+{
+  "type": "workflow",
+  "template": "approval_workflow",
+  "code": "OM-MA-001",
+  "slug": "om.manpower_acquisition.manpower_request",
+  "title": "Manpower Request",
+  "segment": "OM",
+  "team": "Manpower Acquisition",
+  "description": "Request approval to fill or create a workforce requirement.",
+  "version": 1,
+  "inputs": [
+    "Approved Position",
+    "Vacancy Requirement"
+  ],
+  "outputs": [
+    "Approved Manpower Request"
+  ],
+  "initiator_roles": [
+    "Hiring Manager"
+  ],
+  "owner_roles": [
+    "Workforce Acquisition Manager"
+  ],
+  "participant_roles": [
+    "HR Business Partner"
+  ],
+  "approver_roles": [
+    "Department Head"
+  ]
+}

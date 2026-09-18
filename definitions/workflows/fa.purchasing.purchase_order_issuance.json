@@ -1,0 +1,5 @@
+{
+  "slug": "fa.purchasing.purchase_order_issuance",
+  "title": "Purchase Order Issuance",
+  "template": "service_request_workflow"
+}

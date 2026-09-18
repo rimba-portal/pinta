@@ -1,0 +1,129 @@
+{
+  "type": "workflow",
+
+  "template": "service_request_workflow",
+
+  "code": "HR-REC-001",
+
+  "slug": "hr.workforce.recruitment",
+
+  "title": "Recruitment",
+
+  "segment": "HR",
+
+  "team": "Workforce",
+
+  "description": "Source, screen and shortlist candidates.",
+
+  "version": 1,
+
+  "inputs": [
+    "Approved Manpower Request"
+  ],
+
+  "outputs": [
+    "Candidate Shortlist"
+  ],
+
+  "initiator_roles": [
+    "Recruiter",
+    "Hiring Manager"
+  ],
+
+  "owner_roles": [
+    "Recruitment Manager"
+  ],
+
+  "participant_roles": [
+    "Recruiters",
+    "Interviewers"
+  ],
+
+  "approver_roles": [
+    "Hiring Manager"
+  ],
+
+  "initial_state": "candidate_sourcing",
+
+  "states": {
+
+    "candidate_sourcing": {
+      "title": "Candidate Sourcing"
+    },
+
+    "application_screening": {
+      "title": "Application Screening"
+    },
+
+    "interview_coordination": {
+      "title": "Interview Coordination"
+    },
+
+    "interview_evaluation": {
+      "title": "Interview Evaluation"
+    },
+
+    "shortlist_review": {
+      "title": "Shortlist Review"
+    },
+
+    "completed": {
+      "title": "Candidate Shortlist Approved"
+    },
+
+    "rejected": {
+      "title": "Recruitment Closed"
+    }
+  },
+
+  "transitions": [
+
+    {
+      "from": "candidate_sourcing",
+      "action": "complete",
+      "to": "application_screening"
+    },
+
+    {
+      "from": "application_screening",
+      "action": "approve",
+      "to": "interview_coordination"
+    },
+
+    {
+      "from": "application_screening",
+      "action": "reject",
+      "to": "rejected"
+    },
+
+    {
+      "from": "interview_coordination",
+      "action": "complete",
+      "to": "interview_evaluation"
+    },
+
+    {
+      "from": "interview_evaluation",
+      "action": "complete",
+      "to": "shortlist_review"
+    },
+
+    {
+      "from": "shortlist_review",
+      "action": "approve",
+      "to": "completed"
+    },
+
+    {
+      "from": "shortlist_review",
+      "action": "return",
+      "to": "candidate_sourcing"
+    },
+
+    {
+      "from": "shortlist_review",
+      "action": "reject",
+      "to": "rejected"
+    }
+  ]
+}

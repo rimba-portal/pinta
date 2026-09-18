@@ -1,0 +1,16 @@
+{
+  "template": "approval_workflow",
+  "states": [
+    "draft",
+    "review",
+    "approved",
+    "rejected"
+  ],
+  "actions": [
+    "submit",
+    "approve",
+    "reject",
+    "return",
+    "cancel"
+  ]
+}

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Rimba\Workflow\Enums;
 
 enum WorkflowAction: string
@@ -16,6 +18,7 @@ enum WorkflowAction: string
     {
         return str($this->value)->headline()->toString();
     }
+
     public function color(): string
     {
         return match ($this) {
@@ -27,6 +30,7 @@ enum WorkflowAction: string
             self::Cancel => 'gray'
         };
     }
+
     public function icon(): string
     {
         return match ($this) {

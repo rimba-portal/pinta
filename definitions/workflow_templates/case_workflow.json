@@ -1,0 +1,16 @@
+{
+  "template": "case_workflow",
+  "states": [
+    "open",
+    "assessment",
+    "investigation",
+    "decision",
+    "closure"
+  ],
+  "actions": [
+    "assign",
+    "approve",
+    "reject",
+    "complete"
+  ]
+}

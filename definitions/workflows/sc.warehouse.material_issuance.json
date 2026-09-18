@@ -1,0 +1,5 @@
+{
+  "slug": "sc.warehouse.material_issuance",
+  "title": "Material Issuance",
+  "template": "service_request_workflow"
+}

@@ -1,0 +1,16 @@
+{
+  "template": "procurement_workflow",
+  "states": [
+    "request",
+    "approval",
+    "sourcing",
+    "ordering",
+    "receiving",
+    "completed"
+  ],
+  "actions": [
+    "submit",
+    "approve",
+    "complete"
+  ]
+}

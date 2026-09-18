@@ -1,0 +1,15 @@
+{
+  "template": "quality_workflow",
+  "states": [
+    "finding",
+    "investigation",
+    "action_plan",
+    "verification",
+    "closure"
+  ],
+  "actions": [
+    "assign",
+    "complete",
+    "approve"
+  ]
+}

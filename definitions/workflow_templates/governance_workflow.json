@@ -1,0 +1,14 @@
+{
+  "template": "governance_workflow",
+  "states": [
+    "proposal",
+    "review",
+    "approval",
+    "active"
+  ],
+  "actions": [
+    "submit",
+    "approve",
+    "reject"
+  ]
+}

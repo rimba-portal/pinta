@@ -1,0 +1,15 @@
+{
+  "template": "incident_workflow",
+  "states": [
+    "reported",
+    "investigation",
+    "corrective_action",
+    "verification",
+    "closed"
+  ],
+  "actions": [
+    "assign",
+    "complete",
+    "approve"
+  ]
+}

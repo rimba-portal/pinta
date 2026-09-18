@@ -1,0 +1,9 @@
+{
+  "metrics": [
+    "requests_submitted",
+    "approval_cycle_time",
+    "approval_rate",
+    "rejection_rate",
+    "vacancies_opened"
+  ]
+}
