@@ -13,6 +13,8 @@ class MyTasks extends Page
 
     protected string $view = 'bites::staff.my-tasks';
 
+    protected static string|\UnitEnum|null $navigationGroup = 'ToDo';
+
     public array $tasks = [];
 
     public function mount(TaskInboxService $inbox): void

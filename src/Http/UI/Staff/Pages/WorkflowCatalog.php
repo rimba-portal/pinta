@@ -13,6 +13,8 @@ class WorkflowCatalog extends Page
 
     protected string $view = 'bites::staff.workflow-catalog';
 
+    protected static string|\UnitEnum|null $navigationGroup = 'Catalog';
+
     public array $workflows = [];
 
     public function mount(

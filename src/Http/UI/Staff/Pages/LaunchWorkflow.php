@@ -17,11 +17,13 @@ class LaunchWorkflow extends Page implements HasForms
 
     protected string $view = 'bites::staff.launch-workflow';
 
+    protected static string|\UnitEnum|null $navigationGroup = 'Catalog';
+
     /**
      * Filament route:
      * /staff/launch-workflow/{slug}
      */
-    protected static ?string $slug = 'launch-workflow/{slug}';
+    protected static ?string $slug = 'launch-workflow'; // /{slug}';
 
     /**
      * Workflow definition slug.
