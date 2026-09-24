@@ -11,6 +11,7 @@ use Rimba\Workflow\Models\WorkflowOutput;
 use Rimba\Workflow\Support\NullPermissionSynchronizer;
 
 return [
+    'enforce_permissions' => false,
     'definitions_path' => base_path('definitions'),
     'permission_synchronizer' => NullPermissionSynchronizer::class,
     'tables' => [
