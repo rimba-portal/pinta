@@ -20,23 +20,32 @@ class LaunchWorkflow extends Page implements HasForms
     protected static string|\UnitEnum|null $navigationGroup = 'Catalog';
 
     /**
-     * Filament route:
-     * /staff/launch-workflow/{slug}
+     * Route:
+     * /staff/launch-workflow?slug=workflow-slug
      */
-    protected static ?string $slug = 'launch-workflow'; // /{slug}';
+    protected static ?string $slug = 'launch-workflow';
 
-    /**
-     * Workflow definition slug.
-     */
     public string $workflowSlug;
 
     public ?array $data = [];
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false;
+    }
+
     public function mount(
-        string $slug,
         DefinitionRegistry $registry,
-        WorkflowAuthorizationService $authorization
+        WorkflowAuthorizationService $authorization,
     ): void {
+        $slug = request()->query('slug');
+
+        abort_unless(
+            filled($slug),
+            404,
+            'Workflow slug is required.'
+        );
+
         $workflowDefinition = $registry->workflow($slug);
 
         abort_unless(
@@ -63,8 +72,10 @@ class LaunchWorkflow extends Page implements HasForms
 
     public function submit(): void
     {
+        //
         // TODO:
-        // resolve domain model
-        // WorkflowEngine::start(...)
+        // Resolve subject model
+        // app(WorkflowEngine::class)->start(...)
+        //
     }
 }
