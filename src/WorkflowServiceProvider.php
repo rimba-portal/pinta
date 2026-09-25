@@ -24,7 +24,6 @@ class WorkflowServiceProvider extends BitesServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([ValidateWorkflowDefinitions::class, SyncWorkflowPermissions::class]);
         }
-
         $this->publishes([__DIR__.'/../config/pinta.php' => config_path('pinta.php')], 'pinta-config');
         $this->publishes([__DIR__.'/../definitions' => base_path('definitions')], 'pinta-definitions');
 
