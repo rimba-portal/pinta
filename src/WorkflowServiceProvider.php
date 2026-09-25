@@ -27,6 +27,7 @@ class WorkflowServiceProvider extends BitesServiceProvider
 
         $this->publishes([__DIR__.'/../config/pinta.php' => config_path('pinta.php')], 'pinta-config');
         $this->publishes([__DIR__.'/../definitions' => base_path('definitions')], 'pinta-definitions');
+
     }
 
     protected function registerPackage(): void
@@ -38,5 +39,6 @@ class WorkflowServiceProvider extends BitesServiceProvider
         $this->app->singleton(WorkflowEngineContract::class, WorkflowEngine::class);
         $this->app->alias(WorkflowEngineContract::class, 'pinta');
         $this->app->singleton(PermissionSynchronizer::class, fn ($app) => $app->make(config('pinta.permission_synchronizer')));
+
     }
 }

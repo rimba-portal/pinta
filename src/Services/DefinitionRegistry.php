@@ -16,10 +16,10 @@ final class DefinitionRegistry
 
     public function workflow(string $slug): RuntimeWorkflowDefinition
     {
-        $model = $this->workflowDefinitionRepository->find($slug);
+        $workflowDefinition = $this->workflowDefinitionRepository->find($slug);
 
         return RuntimeWorkflowDefinition::fromArray(
-            $model->toDefinitionArray()
+            $workflowDefinition->toDefinitionArray()
         );
     }
 

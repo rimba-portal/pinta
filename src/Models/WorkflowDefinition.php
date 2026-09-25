@@ -7,6 +7,7 @@ namespace Rimba\Workflow\Models;
 use Illuminate\Database\Eloquent\Attributes\WithoutIncrementing;
 use Illuminate\Database\Eloquent\Attributes\WithoutTimestamps;
 use Illuminate\Database\Eloquent\Model;
+use LogicException;
 
 #[WithoutIncrementing]
 #[WithoutTimestamps]
@@ -18,14 +19,12 @@ final class WorkflowDefinition extends Model
     protected $primaryKey = 'slug';
 
     /**
-     * Slugs are strings, for example:
-     * hr.workforce.recruitment
+     * Workflow slugs are strings.
      */
     protected $keyType = 'string';
 
     /**
-     * JSON workflow definitions may contain package-specific metadata,
-     * so allow all definition attributes to be filled.
+     * Allow workflow definition attributes to be filled.
      */
     protected $guarded = [];
 
@@ -33,16 +32,20 @@ final class WorkflowDefinition extends Model
     {
         return [
             'version' => 'integer',
+
             'states' => 'array',
             'transitions' => 'array',
             'activities' => 'array',
             'start_form' => 'array',
+
             'inputs' => 'array',
             'outputs' => 'array',
+
             'initiator_roles' => 'array',
             'owner_roles' => 'array',
             'participant_roles' => 'array',
             'approver_roles' => 'array',
+
             'published' => 'boolean',
             'active' => 'boolean',
         ];
@@ -56,56 +59,74 @@ final class WorkflowDefinition extends Model
     /**
      * Prevent accidental database persistence.
      *
-     * WorkflowDefinitionRepository must be used instead.
+     * Use WorkflowDefinitionRepository::save() instead.
      */
     public function save(array $options = []): bool
     {
-        throw new \LogicException(
-            'WorkflowDefinition is JSON-backed. Use WorkflowDefinitionRepository::save().'
-        );
-    }
-
-    public function delete(): ?bool
-    {
-        throw new \LogicException(
-            'WorkflowDefinition is JSON-backed. Use WorkflowDefinitionRepository::delete().'
+        throw new LogicException(
+            'WorkflowDefinition is JSON-backed. '
+            .'Use WorkflowDefinitionRepository::save().'
         );
     }
 
     /**
-     * Return data suitable for writing back to the JSON definition.
+     * Prevent accidental database deletion.
+     *
+     * Use WorkflowDefinitionRepository::delete() instead.
+     */
+    public function delete(): ?bool
+    {
+        throw new LogicException(
+            'WorkflowDefinition is JSON-backed. '
+            .'Use WorkflowDefinitionRepository::delete().'
+        );
+    }
+
+    /**
+     * Return decoded definition data suitable for writing to JSON.
      */
     public function toDefinitionArray(): array
     {
-        $data = $this->attributesToArray();
-
         return array_filter(
-            $data,
-            static fn (mixed $value): bool => $value !== null
+            $this->attributesToArray(),
+            static fn (mixed $value): bool => $value !== null,
         );
     }
 
     /**
-     * Create a persisted virtual model from JSON data.
+     * Create an existing virtual model from decoded JSON data.
+     *
+     * Do not use setRawAttributes() here.
+     *
+     * The decoded JSON contains actual PHP arrays. Calling fill()
+     * passes the values through Eloquent's attribute setters so array
+     * casts are stored internally in the expected raw JSON format.
      */
     public static function fromDefinition(array $data): self
     {
         $model = new self;
 
-        $model->setRawAttributes($data, true);
+        $model->fill($data);
+
         $model->exists = true;
+        $model->wasRecentlyCreated = false;
+
+        $model->syncOriginal();
 
         return $model;
     }
 
     /**
-     * Create a new, unsaved JSON definition model.
+     * Create a new unsaved virtual model.
      */
     public static function makeDefinition(array $data = []): self
     {
-        $model = new self($data);
+        $model = new self;
+
+        $model->fill($data);
 
         $model->exists = false;
+        $model->wasRecentlyCreated = false;
 
         return $model;
     }
