@@ -21,7 +21,7 @@ final class ValidateWorkflowDefinitions extends Command
             try {
                 $d = json_decode(File::get($file), true, 512, JSON_THROW_ON_ERROR);
                 $e = $v->validate($d);
-                if ($e) {
+                if ($e !== []) {
                     $failed = true;
                     $this->error(basename($file));
                     foreach ($e as $x) {

@@ -17,7 +17,7 @@ final class DefinitionValidator
             }
         }
 
-        if ($errors) {
+        if ($errors !== []) {
             return $errors;
         }
 
@@ -67,7 +67,7 @@ final class DefinitionValidator
     public function assert(array $definition): void
     {
         $errors = $this->validate($definition);
-        if ($errors) {
+        if ($errors !== []) {
             throw new \InvalidArgumentException(implode(PHP_EOL, $errors));
         }
     }

@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Rimba\Workflow\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Unguarded;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
+#[Unguarded]
 class ActivityAssignment extends Model
 {
-    protected $guarded = [];
-
     protected function casts(): array
     {
         return ['assigned_at' => 'datetime', 'claimed_at' => 'datetime', 'completed_at' => 'datetime'];

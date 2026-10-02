@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Rimba\Workflow\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Unguarded;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+#[Unguarded]
 class WorkflowLink extends Model
 {
-    protected $guarded = [];
-
     public function getTable()
     {
         return config('pinta.tables.workflow_links');

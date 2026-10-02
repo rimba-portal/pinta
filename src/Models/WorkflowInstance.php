@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Rimba\Workflow\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Unguarded;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Rimba\Workflow\Enums\WorkflowStatus;
 
+#[Unguarded]
 class WorkflowInstance extends Model
 {
-    protected $guarded = [];
-
     protected function casts(): array
     {
         return ['status' => WorkflowStatus::class, 'context' => 'array', 'started_at' => 'datetime', 'completed_at' => 'datetime'];

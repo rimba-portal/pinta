@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Rimba\Workflow\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Unguarded;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Rimba\Workflow\Enums\ActivityStatus;
 
+#[Unguarded]
 class ActivityInstance extends Model
 {
-    protected $guarded = [];
-
     protected function casts(): array
     {
         return ['status' => ActivityStatus::class, 'payload' => 'array', 'due_at' => 'datetime', 'completed_at' => 'datetime'];

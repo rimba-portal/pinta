@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Rimba\Workflow\Models;
 
+use Illuminate\Database\Eloquent\Attributes\RouteKey;
+use Illuminate\Database\Eloquent\Attributes\Unguarded;
 use Illuminate\Database\Eloquent\Attributes\WithoutIncrementing;
 use Illuminate\Database\Eloquent\Attributes\WithoutTimestamps;
 use Illuminate\Database\Eloquent\Model;
@@ -11,6 +13,8 @@ use LogicException;
 
 #[WithoutIncrementing]
 #[WithoutTimestamps]
+#[Unguarded]
+#[RouteKey('slug')]
 final class WorkflowDefinition extends Model
 {
     /**
@@ -22,11 +26,6 @@ final class WorkflowDefinition extends Model
      * Workflow slugs are strings.
      */
     protected $keyType = 'string';
-
-    /**
-     * Allow workflow definition attributes to be filled.
-     */
-    protected $guarded = [];
 
     protected function casts(): array
     {
@@ -49,11 +48,6 @@ final class WorkflowDefinition extends Model
             'published' => 'boolean',
             'active' => 'boolean',
         ];
-    }
-
-    public function getRouteKeyName(): string
-    {
-        return 'slug';
     }
 
     /**
