@@ -43,23 +43,32 @@ class Offering extends Model
 
     public function form(): BelongsTo
     {
-        return $this->belongsTo(Form::class, 'form_id');
+        return $this->belongsTo(
+            Form::class,
+            'form_id',
+        );
     }
 
     public function workflow(): BelongsTo
     {
-        return $this->belongsTo(Workflow::class, 'workflow_id');
+        return $this->belongsTo(
+            Workflow::class,
+            'workflow_id',
+        );
     }
 
     public function requests(): HasMany
     {
-        return $this->hasMany(Request::class);
+        return $this->hasMany(
+            Request::class,
+            'offering_id',
+        );
     }
 
     public function orgUnit(): BelongsTo
     {
         return $this->belongsTo(
-            config('bites.work.models.org_unit'),
+            config('bites.request.models.org_unit'),
             'org_unit_id',
         );
     }
@@ -67,7 +76,7 @@ class Offering extends Model
     public function orgTeam(): BelongsTo
     {
         return $this->belongsTo(
-            config('bites.work.models.org_team'),
+            config('bites.request.models.org_team'),
             'org_team_id',
         );
     }

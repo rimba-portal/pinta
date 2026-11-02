@@ -9,19 +9,23 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
-class OfferingForm
+final class OfferingForm
 {
     public static function configure(Schema $schema): Schema
     {
         return $schema
             ->components([
                 TextInput::make('code')
-                    ->required(),
+                    ->required()
+                    ->maxLength(100)
+                    ->unique(ignoreRecord: true),
 
                 TextInput::make('name')
-                    ->required(),
+                    ->required()
+                    ->maxLength(255),
 
                 Textarea::make('description')
+                    ->rows(4)
                     ->columnSpanFull(),
 
                 Select::make('org_unit_id')
@@ -66,17 +70,17 @@ class OfferingForm
                     ->default('draft')
                     ->required(),
 
-                TextInput::make('icon'),
+                TextInput::make('icon')
+                    ->maxLength(255),
 
-                TextInput::make('color'),
+                TextInput::make('color')
+                    ->maxLength(100),
 
                 TextInput::make('sort')
                     ->numeric()
+                    ->minValue(0)
                     ->default(0)
                     ->required(),
-
-                Textarea::make('settings')
-                    ->columnSpanFull(),
             ]);
     }
 }

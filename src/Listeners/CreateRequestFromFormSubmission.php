@@ -8,7 +8,7 @@ use Packstub\FormBuilder\Events\SubmissionReceived;
 use Rimba\Request\Models\Offering;
 use Rimba\Request\Models\Request;
 
-class CreateRequestFromFormSubmission
+final class CreateRequestFromFormSubmission
 {
     public function handle(SubmissionReceived $event): void
     {
@@ -17,45 +17,47 @@ class CreateRequestFromFormSubmission
             ->first();
 
         /*
-         * The form may belong to Form Builder without being
+         * The submitted form may be a general Packstub form that is not
          * associated with a Rimba Offering.
          */
-        if (! $offering) {
+        if ($offering === null) {
             return;
         }
 
-        /*
-         * Prevent duplicate Request creation.
-         */
-        if (
-            Request::query()
-                ->where(
-                    'form_submission_id',
-                    $event->submission->getKey(),
-                )
-                ->exists()
-        ) {
-            return;
-        }
-
-        Request::create([
-            'number' => $this->nextRequestNumber(),
-
-            'offering_id' => $offering->getKey(),
-
-            'phase_code' => config(
-                'request.phases.submitted',
-                'oir.01',
-            ),
-
-            'form_submission_id' => $event->submission->getKey(),
-
-            'submitted_at' => now(),
-        ]);
+        Request::query()->firstOrCreate(
+            [
+                'form_submission_id' => $event->submission->getKey(),
+            ],
+            [
+                'number' => $this->nextRequestNumber(),
+                'offering_id' => $offering->getKey(),
+                'requested_by' => $this->requestedBy(),
+                'org_unit_id' => $offering->org_unit_id,
+                'org_team_id' => $offering->org_team_id,
+                'phase_code' => config(
+                    'bites.request.phases.submitted',
+                    'oir.01',
+                ),
+                'submitted_at' => now(),
+            ],
+        );
     }
 
-    protected function nextRequestNumber(): string
+    private function requestedBy(): int|string|null
     {
-        return 'REQ-'.now()->format('YmdHisv');
+        /*
+         * Replace this mapping later if Packstub's submission user_id
+         * points to User rather than Staff.
+         */
+        return null;
+    }
+
+    private function nextRequestNumber(): string
+    {
+        return sprintf(
+            'REQ-%s-%s',
+            now()->format('YmdHis'),
+            str()->upper(str()->random(6)),
+        );
     }
 }

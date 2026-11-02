@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rimba\Workflow;
+namespace Rimba\Request;
 
 use Illuminate\Support\Facades\Event;
 use Packstub\FormBuilder\Events\SubmissionReceived;

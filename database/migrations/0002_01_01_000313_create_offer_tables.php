@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreignId('org_unit_id')->index()->constrained('org_units');
             $table->foreignId('org_team_id')->nullable()->index()->constrained('org_teams')->nullOnDelete();
             $table->unsignedBigInteger('form_id')->nullable()->index();
-            $table->string('workflow_id')->nullable()->index();
+            $table->uuid('workflow_id')->nullable()->index();
             $table->string('visibility')->default('internal');
             $table->string('availability')->default('draft');
             $table->string('icon')->nullable();
@@ -32,13 +32,13 @@ return new class extends Migration
         Schema::create('req_requests', function (Blueprint $table): void {
             $table->uuid('id')->primary();
             $table->string('number')->unique();
-            $table->foreignUuid('offering_id')->constrained('offerings');
+            $table->foreignUuid('offering_id')->constrained('req_offerings');
             $table->foreignId('requested_by')->nullable()->index()->constrained('staff')->nullOnDelete();
             $table->foreignId('org_unit_id')->nullable()->index()->constrained('org_units')->nullOnDelete();
             $table->foreignId('org_team_id')->nullable()->index()->constrained('org_teams')->nullOnDelete();
             $table->string('phase_code')->default('oir.01')->index();
             $table->unsignedBigInteger('form_submission_id')->nullable()->index();
-            $table->string('workflow_run_id')->nullable()->index();
+            $table->uuid('workflow_run_id')->nullable()->index();
             $table->nullableMorphs('subject');
             $table->json('context')->nullable();
             $table->timestamp('submitted_at')->nullable();

@@ -48,13 +48,16 @@ class Request extends Model
 
     public function offering(): BelongsTo
     {
-        return $this->belongsTo(Offering::class);
+        return $this->belongsTo(
+            Offering::class,
+            'offering_id',
+        );
     }
 
     public function requester(): BelongsTo
     {
         return $this->belongsTo(
-            config('bites.work.models.staff'),
+            config('bites.request.models.staff'),
             'requested_by',
         );
     }
@@ -62,7 +65,7 @@ class Request extends Model
     public function orgUnit(): BelongsTo
     {
         return $this->belongsTo(
-            config('bites.work.models.org_unit'),
+            config('bites.request.models.org_unit'),
             'org_unit_id',
         );
     }
@@ -70,7 +73,7 @@ class Request extends Model
     public function orgTeam(): BelongsTo
     {
         return $this->belongsTo(
-            config('bites.work.models.org_team'),
+            config('bites.request.models.org_team'),
             'org_team_id',
         );
     }

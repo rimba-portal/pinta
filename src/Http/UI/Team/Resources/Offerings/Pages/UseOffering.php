@@ -14,8 +14,7 @@ class UseOffering extends Page
 
     protected static string $resource = OfferingResource::class;
 
-    protected string $view =
-        'rimba-request::filament.offerings.pages.use-offering';
+    protected string $view = 'bites::team.pages.use-offering';
 
     public function mount(int|string $record): void
     {
