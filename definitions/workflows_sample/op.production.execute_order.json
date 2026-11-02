@@ -1,5 +1,0 @@
-{
-  "slug": "op.production.execute_order",
-  "title": "Execute Order",
-  "template": "service_request_workflow"
-}
