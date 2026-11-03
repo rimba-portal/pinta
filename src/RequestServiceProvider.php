@@ -7,7 +7,9 @@ namespace Rimba\Request;
 use Illuminate\Support\Facades\Event;
 use Packstub\FormBuilder\Events\SubmissionReceived;
 use Rimba\Base\Services\BitesServiceProvider;
+use Rimba\Request\Contracts\ResolvesRoleApprovers;
 use Rimba\Request\Listeners\CreateRequestFromFormSubmission;
+use Rimba\Request\Services\RoleApproverResolver;
 
 class RequestServiceProvider extends BitesServiceProvider
 {
@@ -32,6 +34,9 @@ class RequestServiceProvider extends BitesServiceProvider
 
     protected function registerPackage(): void
     {
-        //
+        $this->app->singleton(
+            ResolvesRoleApprovers::class,
+            RoleApproverResolver::class,
+        );
     }
 }
