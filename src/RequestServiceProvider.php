@@ -15,21 +15,11 @@ class RequestServiceProvider extends BitesServiceProvider
      * Keep these shared if your intention is that all RIMBA packages
      * contribute into the same Bites namespace/configuration.
      */
-    protected string $configName = 'work';
+    // protected string $configName = 'work';
 
-    protected string $viewNamespace = 'bites';
+    protected string $viewsPath = __DIR__.'/../resources/views';
 
-    /*
-     * Work currently does not need its own icon set.
-     *
-     * If Work has resources/svg, change these to:
-     *
-     * protected string $iconSet = 'work';
-     * protected string $iconPrefix = 'work';
-     */
-    protected string $iconSet = 'bites';
-
-    protected string $iconPrefix = 'bites';
+    protected string $iconsPath = __DIR__.'/../resources/svg';
 
     protected function bootPackage(): void
     {

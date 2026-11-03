@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Rimba\Request\Enums\State;
 
 return new class extends Migration
 {
@@ -45,6 +46,13 @@ return new class extends Migration
             $table->timestamp('completed_at')->nullable();
             $table->timestamp('cancelled_at')->nullable();
             $table->timestamps();
+        });
+        Schema::create('req_model_states', function (Blueprint $table): void {
+            $table->id();
+            $table->morphs('stateable');
+            $table->string('state')->default(State::Draft->value)->index();
+            $table->timestamps();
+            $table->unique(['stateable_type', 'stateable_id']);
         });
     }
 

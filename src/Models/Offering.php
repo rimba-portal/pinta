@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Packstub\Flow\Models\Workflow;
 use Packstub\FormBuilder\Models\Form;
+use Rimba\Organization\Models\OrgTeam;
+use Rimba\Organization\Models\OrgUnit;
 
 #[Table(name: 'req_offerings')]
 #[Fillable([
@@ -68,7 +70,7 @@ class Offering extends Model
     public function orgUnit(): BelongsTo
     {
         return $this->belongsTo(
-            config('bites.request.models.org_unit'),
+            OrgUnit::class,
             'org_unit_id',
         );
     }
@@ -76,7 +78,7 @@ class Offering extends Model
     public function orgTeam(): BelongsTo
     {
         return $this->belongsTo(
-            config('bites.request.models.org_team'),
+            OrgTeam::class,
             'org_team_id',
         );
     }

@@ -14,7 +14,7 @@ class UseOffering extends Page
 
     protected static string $resource = OfferingResource::class;
 
-    protected string $view = 'bites::team.pages.use-offering';
+    protected string $view = 'bites::use-offering';
 
     public function mount(int|string $record): void
     {

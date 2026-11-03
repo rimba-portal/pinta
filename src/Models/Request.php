@@ -10,9 +10,12 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Packstub\Flow\Concerns\HasWorkflows;
 use Packstub\Flow\Models\WorkflowRun;
 use Packstub\FormBuilder\Models\FormSubmission;
+use Rimba\Organization\Models\OrgTeam;
+use Rimba\Organization\Models\OrgUnit;
+use Rimba\People\Models\Staff;
+use Rimba\Request\Concerns\HasWorkflows;
 
 #[Table(name: 'req_requests')]
 #[Fillable([
@@ -57,7 +60,7 @@ class Request extends Model
     public function requester(): BelongsTo
     {
         return $this->belongsTo(
-            config('bites.request.models.staff'),
+            Staff::class,
             'requested_by',
         );
     }
@@ -65,7 +68,7 @@ class Request extends Model
     public function orgUnit(): BelongsTo
     {
         return $this->belongsTo(
-            config('bites.request.models.org_unit'),
+            OrgUnit::class,
             'org_unit_id',
         );
     }
@@ -73,7 +76,7 @@ class Request extends Model
     public function orgTeam(): BelongsTo
     {
         return $this->belongsTo(
-            config('bites.request.models.org_team'),
+            OrgTeam::class,
             'org_team_id',
         );
     }

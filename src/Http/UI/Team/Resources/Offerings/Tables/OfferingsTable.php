@@ -40,19 +40,9 @@ class OfferingsTable
                 Action::make('use')
                     ->label('Use')
                     ->icon('heroicon-o-play')
-                    ->url(
-                        fn ($record): string => OfferingResource::getUrl(
-                            'use',
-                            ['record' => $record],
-                        )
-                    )
-                    ->visible(
-                        fn ($record): bool => filled($record->form_id)
-                            && $record->availability === 'available'
-                    ),
-
+                    ->url(fn ($record): string => OfferingResource::getUrl('use', ['record' => $record]))
+                    ->visible(fn ($record): bool => filled($record->form_id) && $record->availability === 'available'),
                 ViewAction::make(),
-
                 EditAction::make(),
             ]);
     }
