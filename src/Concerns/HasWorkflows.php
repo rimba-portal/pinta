@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Rimba\Request\Concerns;
 
 use Illuminate\Database\Eloquent\Relations\MorphOne;
-use Rimba\Request\Concerns\HasWorkflows as PackstubHasWorkflows;
+use Packstub\Flow\Concerns\HasWorkflows as PackstubHasWorkflows;
 use Rimba\Request\Enums\State;
 use Rimba\Request\Models\ModelState;
 

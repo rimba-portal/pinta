@@ -23,6 +23,8 @@ class OfferingResource extends Resource
 {
     protected static ?string $model = Offering::class;
 
+    protected static string|\UnitEnum|null $navigationGroup = 'Offerings';
+
     protected static string|BackedEnum|null $navigationIcon =
         Heroicon::OutlinedRectangleStack;
 
